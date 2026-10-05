@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | Kokand University CMS</title>
+  <link rel="stylesheet" href="/admin-static/admin.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div>
+        <div class="brand-pill" id="brandPill">Kokand University CMS</div>
+        <h1 class="sidebar-title">Admin Panel</h1>
+        <p class="muted">Butun sayt kontentini shu yerdan boshqarish mumkin.</p>
+        <p id="roleBadge" class="role-badge"></p>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-btn active" data-view="guide">📖 Qo‘llanma / Yordam</button>
+
+        <div class="nav-group">Sayt kontenti</div>
+        <button class="nav-btn" data-view="content">✏️ Matn / rasm / havola</button>
+        <button class="nav-btn" data-view="menulinks">🔗 Menyu havolalari</button>
+        <button class="nav-btn" data-view="news">📰 Yangiliklar</button>
+        <button class="nav-btn" data-view="achievements">🏆 Natijalar</button>
+        <button class="nav-btn" data-view="distinctions">⭐ Ajralib turish</button>
+        <button class="nav-btn" data-view="interests">💡 Qiziqishlar</button>
+        <button class="nav-btn" data-view="stories">📝 Hikoyalar</button>
+        <button class="nav-btn" data-view="gallery">🖼️ Galereya</button>
+        <button class="nav-btn" data-view="programmes">🎓 Dasturlar</button>
+
+        <div class="nav-group">Shaharcha</div>
+        <button class="nav-btn" data-view="residences">🏠 Turar joylar</button>
+        <button class="nav-btn" data-view="castle_pages">📄 Shaharcha sahifalari</button>
+        <button class="nav-btn staff-only" data-view="applications">📨 Yotoqxona arizalari</button>
+
+        <div class="nav-group">Tizim</div>
+        <button class="nav-btn" data-view="files">📁 Fayllar</button>
+        <button class="nav-btn staff-only" data-view="sitesettings">⚙️ Sayt sozlamalari</button>
+        <button class="nav-btn staff-only" data-view="users">👥 Adminlar</button>
+        <button class="nav-btn" data-view="account">🔑 Mening hisobim</button>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="/" target="_blank" rel="noreferrer" class="ghost-link">Saytni ochish</a>
+        <button id="logoutBtn" class="ghost-link button-reset">Chiqish</button>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <div>
+          <h2 id="viewTitle">Qo‘llanma / Yordam</h2>
+          <p id="userInfo" class="muted"></p>
+        </div>
+        <div class="stats-grid" id="statsGrid"></div>
+      </header>
+
+      <!-- QO'LLANMA / YORDAM -->
+      <section id="view-guide" class="view active">
+        <div class="content-layout single-column">
+          <section class="card">
+            <div class="card-header"><h3>Xush kelibsiz! 👋</h3></div>
+            <p class="muted">Bu panel orqali saytning barcha matn, rasm, video va bo‘limlarini kod yozmasdan boshqarasiz. Quyida qaysi bo‘lim nima uchun ekanligi va qanday tahrirlash tushuntirilgan.</p>
+          </section>
+
+          <section class="card">
+            <div class="card-header"><h3>🧭 Qayerdan boshlayman?</h3></div>
+            <ol class="guide-list">
+              <li><b>✏️ Matn / rasm / havola</b> — saytdagi <u>tayyor</u> matn, rasm, tugma va videolarni o‘zgartirish. Masalan bosh sahifadagi sarlavha yoki rasmni almashtirish. Chapdan elementni tanlab, o‘ng tomonda tahrirlang va <b>Saqlash</b> bosing.</li>
+              <li><b>📰 Yangiliklar / 📝 Hikoyalar / 🖼️ Galereya</b> — bu bo‘limlarga <u>yangi</u> yozuv/rasm qo‘shasiz: “+ Yangi …” tugmasini bosing, maydonlarni to‘ldiring, Saqlang. Saytda darhol ko‘rinadi.</li>
+              <li><b>🏆 Natijalar, ⭐ Ajralib turish, 💡 Qiziqishlar, 🎓 Dasturlar</b> — bosh sahifadagi tegishli bo‘limlar va modal (ochiladigan) oynalar.</li>
+              <li><b>📁 Fayllar</b> — rasm/video yuklash joyi. Yuklagan faylingiz URL’ini boshqa bo‘limlarda ishlatasiz (yoki “Yuklash” tugmasi bilan to‘g‘ridan-to‘g‘ri tanlaysiz).</li>
+              <li><b>🔑 Mening hisobim</b> — o‘z login/parolingizni o‘zgartirish. <b>Birinchi kirgandan keyin albatta parolni almashtiring!</b></li>
+            </ol>
+          </section>
+
+          <section class="card">
+            <div class="card-header"><h3>💡 Foydali maslahatlar</h3></div>
+            <ul class="guide-list">
+              <li>Har qanday o‘zgarishdan keyin <b>Saqlash</b> tugmasini bosishni unutmang.</li>
+              <li>Rasm qo‘shganda — avval <b>📁 Fayllar</b>ga yuklang yoki maydon yonidagi <b>Yuklash</b> tugmasidan foydalaning.</li>
+              <li>O‘zgarishni ko‘rish uchun yuqoridagi <b>“Saytni ochish”</b> havolasini bosing (yangi oynada ochiladi).</li>
+              <li>Rollar: <b>Editor</b> — faqat matn/rasm/havola; <b>Staff</b> — hammasi (sozlamalar, adminlar, arizalar, video).</li>
+              <li>Yotoqxona arizalarini o‘chirishdan oldin <b>Excel (CSV)</b>ga yuklab zaxira oling — o‘chirilgan ariza qaytmaydi.</li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <!-- KONTENT (elementlar) -->
+      <section id="view-content" class="view">
+        <div class="help-box">
+          <b>Bu bo‘lim nima?</b> Saytda allaqachon mavjud matn, rasm, tugma va videolarni shu yerdan o‘zgartirasiz.
+          Chapdagi ro‘yxatdan kerakli elementni tanlang → o‘ng tomonda qiymatni yozing → <b>Saqlash</b>. Qidiruvdan foydalanib tez toping.
+        </div>
+        <div class="toolbar">
+          <input id="searchInput" type="search" placeholder="Matn bo'yicha qidirish (masalan: Dasturlar, Qabul)...">
+          <select id="typeFilter">
+            <option value="all">Barcha turlar</option>
+            <option value="text">Text</option>
+            <option value="link">Link</option>
+            <option value="image">Image</option>
+            <option value="video">Video (orqafon)</option>
+          </select>
+        </div>
+        <div class="content-layout">
+          <section class="card list-card">
+            <div class="card-header">
+              <h3>Tahrirlanadigan elementlar</h3>
+              <span id="listCount" class="badge"></span>
+            </div>
+            <div id="elementList" class="element-list"></div>
+          </section>
+          <section class="card editor-card">
+            <div class="card-header">
+              <h3>Element editor</h3>
+              <span id="selectedType" class="badge"></span>
+            </div>
+            <div id="editorPane" class="editor-pane empty-state">Chap tomondan element tanlang.</div>
+          </section>
+        </div>
+      </section>
+
+      <!-- MENYU HAVOLALARI -->
+      <section id="view-menulinks" class="view">
+        <div class="help-box">
+          <b>Menyu havolalari.</b> Yuqoridagi menyudagi har bir yozuvni bosilganda foydalanuvchi qaysi saytga o‘tishini shu yerda belgilaysiz.
+          Kerakli yozuv yoniga to‘liq havolani yozing (masalan <code>https://kokanduni.uz/dasturlar</code>) va <b>Hammasini saqlash</b> bosing.
+          Havola qo‘yilgan yozuv bosilganda — o‘sha saytga o‘tadi. Bo‘sh qoldirilgan yozuv eski holatida qoladi.
+        </div>
+        <section class="card">
+          <div class="card-header">
+            <h3>Menyu yozuvlari va havolalari</h3>
+            <span id="menulinks-count" class="badge"></span>
+          </div>
+          <div class="inline-actions" style="margin-bottom:12px;flex-wrap:wrap;gap:12px">
+            <button id="menulinks-save" class="primary-btn">💾 Hammasini saqlash</button>
+            <label class="checkbox-row"><input type="checkbox" id="menulinks-newtab" checked> <span>Havolalar yangi oynada ochilsin</span></label>
+          </div>
+          <div id="menulinks-list" class="menulinks-list"></div>
+          <p id="menulinks-msg" class="form-message"></p>
+        </section>
+      </section>
+
+      <!-- YANGILIKLAR -->
+      <section id="view-news" class="view">
+        <div class="content-layout">
+          <section class="card list-card">
+            <div class="card-header"><h3>Yangiliklar</h3><span id="news-count" class="badge"></span></div>
+            <button class="primary-btn full" data-new="news">+ Yangi yangilik</button>
+            <div id="news-list" class="collection-list"></div>
+          </section>
+          <section class="card editor-card">
+            <div class="card-header"><h3 id="news-form-title">Tahrirlash</h3></div>
+            <div id="news-form" class="collection-form empty-state">Chapdan yangilik tanlang yoki yangi qo'shing.</div>
+          </section>
+        </div>
+      </section>
+
+      <!-- NATIJALAR -->
+      <section id="view-achievements" class="view">
+        <div class="content-layout">
+          <section class="card list-card">
+            <div class="card-header"><h3>Natijaga erishganlar</h3><span id="achievements-count" class="badge"></span></div>
+            <button class="primary-btn full" data-new="achievements">+ Yangi natija</button>
+            <div id="achievements-list" class="collection-list"></div>
+          </section>
+          <section class="card editor-card">
+            <div class="card-header"><h3 id="achievements-form-title">Tahrirlash</h3></div>
+            <div id="achievements-form" class="collection-form empty-state">Chapdan tanlang yoki yangi qo'shing.</div>
+          </section>
+        </div>
+      </section>
+
+      <!-- AJRALIB TURISH -->
+      <section id="view-distinctions" class="view">
+        <div class="content-layout">
+          <section class="card list-card">
+            <div class="card-header"><h3>Ajralib turish bo'limlari</h3><span id="distinctions-count" class="badge"></span></div>
+            <button class="primary-btn full" data-new="distinctions">+ Yangi bo'lim</button>
+            <div id="distinctions-list" class="collection-list"></div>
+          </section>
+          <section class="card editor-card">
+            <div class="card-header"><h3 id="distinctions-form-title">Tahrirlash</h3></div>
+            <div id="distinctions-form" class="collection-form empty-state">Chapdan tanlang yoki yangi qo'shing.</div>
+          </section>
+        </div>
+      </section>
+
+      <!-- QIZIQISHLAR -->
+      <section id="view-interests" class="view">
+        <div class="content-layout">
+          <section class="card list-card">
+            <div class="card-header"><h3>"Sizni qiziqtirishi mumkin" kartalar</h3><span id="interests-count" class="badge"></span></div>
+            <button class="primary-btn full" data-new="interests">+ Yangi karta</button>
+            <div id="interests-list" class="collection-list"></div>
+          </section>
+          <section class="card editor-card">
+            <div class="card-header"><h3 id="interests-form-title">Tahrirlash</h3></div>
+            <div id="interests-form" class="collection-form empty-state">Chapdan tanlang yoki yangi qo'shing.</div>
+          </section>
+        </div>
+      </section>
+
+      <!-- HIKOYALAR -->
+      <section id="view-stories" class="view">
+        <div class="content-layout">
+          <section class="card list-card">
+            <div class="card-header"><h3>Hikoyalar (Stories sahifasi)</h3><span id="stories-count" class="badge"></span></div>
+            <button class="primary-btn full" data-new="stories">+ Yangi hikoya</button>
+            <div id="stories-list" class="collection-list"></div>
+          </section>
+          <section class="card editor-card">
+            <div class="card-header"><h3 id="stories-form-title">Tahrirlash</h3></div>
+            <div id="stories-form" class="collection-form empty-state">Chapdan tanlang yoki yangi qo'shing.</div>
+          </section>
+        </div>
+      </section>
+
+      <!-- GALEREYA -->
+      <section id="view-gallery" class="view">
+        <div class="content-layout">
+          <section class="card list-card">
+            <div class="card-header"><h3>Galereya (binolar / ichki koʻrinish)</h3><span id="gallery-count" class="badge"></span></div>
+            <button class="primary-btn full" data-new="gallery">+ Yangi rasm</button>
+            <div id="gallery-list" class="collection-list"></div>
+          </section>
+          <section class="card editor-card">
+            <div class="card-header"><h3 id="gallery-form-title">Tahrirlash</h3></div>
+            <div id="gallery-form" class="collection-form empty-state">Chapdan tanlang yoki yangi qo'shing.</div>
+          </section>
+        </div>
+      </section>
+
+      <!-- TALABALAR SHAHARCHASI -->
+      <section id="view-residences" class="view">
+        <div class="content-layout">
+          <section class="card list-card">
+            <div class="card-header"><h3>Talabalar shaharchasi (turar joylar)</h3><span id="residences-count" class="badge"></span></div>
+            <button class="primary-btn full" data-new="residences">+ Yangi turar joy</button>
+            <div id="residences-list" class="collection-list"></div>
+          </section>
+          <section class="card editor-card">
+            <div class="card-header"><h3 id="residences-form-title">Tahrirlash</h3></div>
+            <div id="residences-form" class="collection-form empty-state">Chapdan tanlang yoki yangi qo'shing.</div>
+          </section>
+        </div>
+      </section>
+
+      <!-- SHAHARCHA SAHIFALARI -->
+      <section id="view-castle_pages" class="view">
+        <div class="content-layout">
+          <section class="card list-card">
+            <div class="card-header"><h3>Shaharcha sahifalari (modal)</h3><span id="castle_pages-count" class="badge"></span></div>
+            <button class="primary-btn full" data-new="castle_pages">+ Yangi sahifa</button>
+            <div id="castle_pages-list" class="collection-list"></div>
+          </section>
+          <section class="card editor-card">
+            <div class="card-header"><h3 id="castle_pages-form-title">Tahrirlash</h3></div>
+            <div id="castle_pages-form" class="collection-form empty-state">Chapdan tanlang yoki yangi qo'shing.</div>
+          </section>
+        </div>
+      </section>
+
+      <!-- YOTOQXONA ARIZALARI -->
+      <section id="view-applications" class="view">
+        <div class="content-layout">
+          <section class="card list-card">
+            <div class="card-header"><h3>Yotoqxona arizalari</h3><span id="applications-count" class="badge"></span></div>
+            <p class="muted small">Saytdagi "Yotoq xonaga qo'shilish" formasidan kelgan arizalar. Yangi arizalar tepada. Holatini o'zgartirib belgilab qo'yishingiz mumkin.</p>
+            <a class="primary-btn full" href="/api/admin/applications.csv" download style="text-align:center;text-decoration:none;display:block">⬇ Excel (CSV) ga yuklab olish</a>
+            <div id="applications-list" class="collection-list"></div>
+          </section>
+          <section class="card editor-card">
+            <div class="card-header"><h3 id="applications-form-title">Ariza tafsilotlari</h3></div>
+            <div id="applications-form" class="collection-form empty-state">Chapdan ariza tanlang.</div>
+          </section>
+        </div>
+      </section>
+
+      <!-- DASTURLAR -->
+      <section id="view-programmes" class="view">
+        <div class="content-layout">
+          <section class="card list-card">
+            <div class="card-header"><h3>Dasturlar (menyu modal oynasi)</h3><span id="programmes-count" class="badge"></span></div>
+            <button class="primary-btn full" data-new="programmes">+ Yangi dastur</button>
+            <div id="programmes-list" class="collection-list"></div>
+          </section>
+          <section class="card editor-card">
+            <div class="card-header"><h3 id="programmes-form-title">Tahrirlash</h3></div>
+            <div id="programmes-form" class="collection-form empty-state">Chapdan tanlang yoki yangi qo'shing.</div>
+          </section>
+        </div>
+      </section>
+
+      <!-- FAYLLAR -->
+      <section id="view-files" class="view">
+        <div class="content-layout single-column">
+          <section class="card">
+            <div class="card-header"><h3>Fayl yuklash</h3></div>
+            <form id="uploadForm" class="upload-row">
+              <input type="file" id="uploadInput" name="file" required>
+              <button type="submit" class="primary-btn">Yuklash</button>
+            </form>
+            <p class="muted small">Yuklangan fayllar rasm/video sifatida elementlar va yangiliklarga ulanadi.</p>
+            <p id="uploadMessage" class="form-message"></p>
+          </section>
+          <section class="card">
+            <div class="card-header"><h3>Fayl kutubxonasi</h3><span id="fileCount" class="badge"></span></div>
+            <div id="fileList" class="file-list"></div>
+          </section>
+        </div>
+      </section>
+
+      <!-- SAYT SOZLAMALARI (staff) -->
+      <section id="view-sitesettings" class="view">
+        <div class="content-layout single-column">
+          <section class="card">
+            <div class="card-header"><h3>Global sozlamalar</h3></div>
+            <p class="muted small">Bo'lim sarlavhalari va tashqi linklar. (Faqat staff admin)</p>
+            <form id="siteSettingsForm" class="stack"></form>
+            <p id="siteSettingsMessage" class="form-message"></p>
+          </section>
+          <section class="card">
+            <div class="card-header"><h3>🌐 Avto-tarjima</h3></div>
+            <p class="muted small">O'zbekcha kiritilgan matn avtomatik ravishda ingliz va rus tiliga tarjima qilinadi. Yangi matn o'zi tarjima bo'ladi. Eski (mavjud) matnni ham tarjima qilish uchun quyidagi tugmani bosing.</p>
+            <button type="button" id="retranslateBtn" class="btn">Barcha matnni qayta tarjima qil</button>
+            <p id="retranslateMessage" class="form-message"></p>
+          </section>
+        </div>
+      </section>
+
+      <!-- ADMINLAR (staff) -->
+      <section id="view-users" class="view">
+        <div class="content-layout">
+          <section class="card list-card">
+            <div class="card-header"><h3>Adminlar</h3><span id="users-count" class="badge"></span></div>
+            <div id="users-list" class="collection-list"></div>
+          </section>
+          <section class="card editor-card">
+            <div class="card-header"><h3 id="user-form-title">Yangi admin qo'shish</h3></div>
+            <form id="userForm" class="stack">
+              <input type="hidden" id="user-id">
+              <label><span>Email (login)</span><input type="email" id="user-email" required></label>
+              <label><span>Parol</span><input type="text" id="user-password" placeholder="Yangi admin uchun parol"></label>
+              <label><span>Rol</span>
+                <select id="user-role">
+                  <option value="editor">Editor (matn/rasm/link/logo)</option>
+                  <option value="staff">Staff (to'liq huquq + adminlar)</option>
+                </select>
+              </label>
+              <div class="inline-actions">
+                <button type="submit" class="primary-btn">Saqlash</button>
+                <button type="button" id="userResetBtn" class="secondary-btn">Tozalash</button>
+              </div>
+              <p id="userMessage" class="form-message"></p>
+            </form>
+          </section>
+        </div>
+      </section>
+
+      <!-- MENING HISOBIM -->
+      <section id="view-account" class="view">
+        <div class="content-layout single-column">
+          <section class="card settings-card">
+            <div class="card-header"><h3>Mening login/parolim</h3></div>
+            <form id="settingsForm" class="stack">
+              <label><span>Joriy parol</span><input type="password" id="currentPassword" required></label>
+              <label><span>Yangi email</span><input type="email" id="newEmail" placeholder="admin@example.com"></label>
+              <label><span>Yangi parol</span><input type="password" id="newPassword" placeholder="Yangi parol kiriting"></label>
+              <button type="submit" class="primary-btn">Saqlash</button>
+            </form>
+            <p id="settingsMessage" class="form-message"></p>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/admin-static/admin.js" defer></script>
+</body>
+</html>

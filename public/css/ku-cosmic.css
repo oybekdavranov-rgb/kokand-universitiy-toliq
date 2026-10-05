@@ -1,0 +1,369 @@
+/* =====================================================================
+   KU COSMIC — "Frozen & Cosmic" dizayn tizimi (theme layer)
+   ---------------------------------------------------------------------
+   Bu fayl ENG OXIRIDA yuklanadi va eski WordPress/Greene's mavzusini
+   ustidan qoplaydi. HTML tuzilishi o'zgartirilmaydi — faqat ko'rinish.
+   Estetika: chuqur kosmik ko'k fon + muz-moviy/binafsha aurora +
+   "frosted glass" yuzalar + yengil yulduz maydoni.
+   ===================================================================== */
+
+/* ------------------------------ 1. TOKENS ------------------------------ */
+:root {
+  /* Fon — kosmik qatlamlar */
+  --ku-space-0:#05070f;     /* eng chuqur */
+  --ku-space-1:#0a1026;     /* asosiy fon */
+  --ku-space-2:#121a3a;     /* ko'tarilgan yuza */
+
+  /* Muz / aurora urg'ulari */
+  --ku-ice:#5ee7ff;         /* muz-moviy — asosiy accent */
+  --ku-ice-soft:#9becff;
+  --ku-aurora:#8b7bff;      /* aurora binafsha */
+  --ku-aurora-2:#6ad7c9;    /* shimoliy yashil-moviy */
+  --ku-frost:#eaf3ff;       /* sovuq oq */
+
+  /* Matn */
+  --ku-text:#e7edff;
+  --ku-muted:#9fb0d8;
+  --ku-dim:#6f7fa8;
+
+  /* Shisha (glassmorphism) */
+  --ku-glass:rgba(255,255,255,.045);
+  --ku-glass-2:rgba(255,255,255,.07);
+  --ku-stroke:rgba(140,200,255,.16);
+  --ku-stroke-strong:rgba(140,200,255,.34);
+
+  /* Gradientlar */
+  --ku-grad-accent:linear-gradient(135deg,var(--ku-ice) 0%,var(--ku-aurora) 100%);
+  --ku-grad-text:linear-gradient(120deg,#ffffff 0%,var(--ku-ice-soft) 45%,var(--ku-aurora) 100%);
+
+  /* Yorug'lik / soya */
+  --ku-glow-ice:0 0 0 1px rgba(94,231,255,.35), 0 10px 40px -8px rgba(94,231,255,.45);
+  --ku-shadow:0 18px 50px -18px rgba(0,0,0,.75);
+  --ku-shadow-soft:0 10px 34px -16px rgba(5,8,22,.9);
+
+  /* Shakl */
+  --ku-radius:18px;
+  --ku-radius-sm:12px;
+  --ku-radius-lg:26px;
+
+  /* Tipografika */
+  --ku-font-display:"Avenir","Poppins","Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --ku-font-body:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+
+  /* O'lchov ritmi */
+  --ku-section-y:clamp(56px,8vw,112px);
+  --ku-container:1200px;
+}
+
+/* ------------------------------ 2. BASE -------------------------------- */
+html { scroll-behavior:smooth; }
+
+body.home,
+body {
+  background:var(--ku-space-1);
+  color:var(--ku-text);
+  font-family:var(--ku-font-body);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  position:relative;
+  overflow-x:hidden;
+}
+
+/* Kosmik fon: chuqur gradient + aurora dog'lari (markup kerak emas) */
+body::before {
+  content:"";
+  position:fixed; inset:0; z-index:-2;
+  background:
+    radial-gradient(1200px 800px at 12% -8%, rgba(94,231,255,.16), transparent 60%),
+    radial-gradient(1000px 760px at 92% 6%, rgba(139,123,255,.18), transparent 58%),
+    radial-gradient(900px 700px at 78% 96%, rgba(106,215,201,.12), transparent 60%),
+    linear-gradient(180deg,var(--ku-space-0) 0%,var(--ku-space-1) 40%,var(--ku-space-0) 100%);
+  pointer-events:none;
+}
+
+/* Yulduz maydoni — sof CSS (nuqtalar), yengil miltillash */
+body::after {
+  content:"";
+  position:fixed; inset:0; z-index:-1;
+  background-image:
+    radial-gradient(1.6px 1.6px at 20% 30%, rgba(255,255,255,.9), transparent 50%),
+    radial-gradient(1.4px 1.4px at 70% 20%, rgba(190,230,255,.8), transparent 50%),
+    radial-gradient(1.2px 1.2px at 40% 70%, rgba(255,255,255,.7), transparent 50%),
+    radial-gradient(1.5px 1.5px at 85% 60%, rgba(200,210,255,.85), transparent 50%),
+    radial-gradient(1.1px 1.1px at 55% 45%, rgba(255,255,255,.6), transparent 50%),
+    radial-gradient(1.3px 1.3px at 10% 80%, rgba(180,225,255,.7), transparent 50%),
+    radial-gradient(1.2px 1.2px at 92% 85%, rgba(255,255,255,.7), transparent 50%),
+    radial-gradient(1.1px 1.1px at 32% 12%, rgba(220,235,255,.65), transparent 50%);
+  background-repeat:no-repeat;
+  opacity:.6;
+  animation:ku-twinkle 6s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+@keyframes ku-twinkle { from{opacity:.35;} to{opacity:.75;} }
+
+/* Tanlov va scrollbar */
+::selection { background:rgba(94,231,255,.28); color:#fff; }
+* { scrollbar-color:var(--ku-aurora) transparent; }
+::-webkit-scrollbar { width:11px; height:11px; }
+::-webkit-scrollbar-thumb { background:linear-gradient(var(--ku-ice),var(--ku-aurora)); border-radius:20px; border:3px solid transparent; background-clip:content-box; }
+::-webkit-scrollbar-track { background:var(--ku-space-0); }
+
+/* ------------------------- 3. TYPOGRAPHY ------------------------------- */
+body h1, body h2, body h3,
+.greenes-title, .introduction-content h2, .content_sections-slide h2 {
+  font-family:var(--ku-font-display);
+  color:var(--ku-frost);
+  letter-spacing:-.01em;
+  line-height:1.1;
+}
+body p, body li, body span, body label { color:var(--ku-text); }
+.sub-title, .greenes-subtitle, .strapline { color:var(--ku-ice-soft); }
+
+body a { color:var(--ku-ice-soft); transition:color .2s ease; }
+body a:hover { color:#fff; }
+
+/* Gradient sarlavha — asosiy bo'lim nomlari */
+.greenes-title span,
+.introduction-content h2 span {
+  background:var(--ku-grad-text);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; color:transparent;
+}
+
+/* --------------------------- 4. CONTAINER ------------------------------ */
+.content_sections-container,
+.introduction-container,
+.who_we_are-container,
+.whats_on-container,
+.we_can_help_with-container {
+  background:transparent !important;
+  padding-top:var(--ku-section-y);
+  padding-bottom:var(--ku-section-y);
+  position:relative;
+}
+
+/* ---------------------------- 5. BUTTONS ------------------------------- */
+body .button,
+body a.button,
+body button.button,
+.gform_wrapper .gform_footer input[type="submit"],
+.wp-block-button__link {
+  display:inline-flex; align-items:center; justify-content:center; gap:.5em;
+  background:var(--ku-grad-accent) !important;
+  color:#05101e !important;
+  font-weight:700;
+  border:0 !important;
+  border-radius:999px !important;
+  padding:.85em 1.8em !important;
+  box-shadow:0 10px 30px -10px rgba(94,231,255,.6), inset 0 1px 0 rgba(255,255,255,.4);
+  text-decoration:none !important;
+  transition:transform .18s ease, box-shadow .25s ease, filter .25s ease;
+  cursor:pointer;
+}
+body .button:hover,
+body a.button:hover,
+body button.button:hover,
+.gform_wrapper .gform_footer input[type="submit"]:hover {
+  transform:translateY(-2px);
+  filter:brightness(1.07) saturate(1.1);
+  box-shadow:0 16px 42px -10px rgba(139,123,255,.7), inset 0 1px 0 rgba(255,255,255,.5);
+}
+/* Ikkilamchi tugma — shisha + muz hoshiya */
+body .button.secondary,
+body a.button.secondary {
+  background:var(--ku-glass-2) !important;
+  color:var(--ku-frost) !important;
+  border:1px solid var(--ku-stroke-strong) !important;
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  box-shadow:none;
+}
+body .button.secondary:hover {
+  border-color:var(--ku-ice) !important;
+  box-shadow:0 0 0 1px var(--ku-ice), 0 10px 30px -12px rgba(94,231,255,.5);
+}
+
+/* --------------------- 6. LANGUAGE SWITCHER ---------------------------- */
+.ku-language-switcher {
+  background:var(--ku-glass-2) !important;
+  border:1px solid var(--ku-stroke) !important;
+  -webkit-backdrop-filter:blur(14px) saturate(140%); backdrop-filter:blur(14px) saturate(140%);
+  border-radius:999px !important;
+  box-shadow:var(--ku-shadow-soft);
+  padding:5px 8px !important;
+}
+.ku-language-switcher__label { color:var(--ku-dim) !important; }
+.ku-language-switcher button {
+  color:var(--ku-muted) !important;
+  border-radius:999px !important;
+  border:0 !important; background:transparent !important;
+  transition:all .2s ease;
+}
+.ku-language-switcher button:hover { color:#fff !important; }
+.ku-language-switcher button[aria-pressed="true"],
+.ku-language-switcher button.active {
+  background:var(--ku-grad-accent) !important;
+  color:#05101e !important; font-weight:700;
+}
+
+/* ------------------------------ 7. HEADER ------------------------------ */
+.site-header-container { background:transparent !important; }
+.site-header {
+  background:rgba(10,16,38,.55) !important;
+  -webkit-backdrop-filter:blur(16px) saturate(140%); backdrop-filter:blur(16px) saturate(140%);
+  border-bottom:1px solid var(--ku-stroke);
+}
+.site-header__top-menu a,
+.site-header__main-menu a { color:var(--ku-text) !important; }
+.site-header__main-menu > ul > li > a { font-weight:600; }
+.site-header__top-menu a:hover,
+.site-header__main-menu a:hover { color:var(--ku-ice) !important; }
+.site-header__main-menu .sub-menu {
+  background:rgba(12,18,42,.92) !important;
+  -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
+  border:1px solid var(--ku-stroke);
+  border-radius:var(--ku-radius-sm);
+  box-shadow:var(--ku-shadow);
+}
+.site-header__main-menu .sub-menu a { color:var(--ku-muted) !important; }
+.site-header__main-menu .sub-menu a:hover { color:#fff !important; }
+/* Login tugmalari — kichik urg'u */
+.site-header__top-menu .login a {
+  border:1px solid var(--ku-stroke-strong);
+  border-radius:999px; padding:.3em 1em;
+}
+
+/* ------------------------------- 8. HERO ------------------------------- */
+.page_hero-container { position:relative; }
+.page_hero-container video,
+.page_hero-container img.responsive-background { filter:saturate(1.05) contrast(1.02); }
+
+/* Kosmik overlay — videoni qorong'ilashtirib, matnni o'qiladigan qiladi */
+.page_hero-overlay {
+  background:
+    radial-gradient(120% 90% at 50% 10%, rgba(94,231,255,.14), transparent 55%),
+    linear-gradient(180deg, rgba(5,7,15,.35) 0%, rgba(5,7,15,.62) 55%, rgba(5,7,15,.92) 100%) !important;
+}
+.page_hero-overlay__content { position:relative; z-index:2; }
+.strapline {
+  display:inline-block;
+  background:var(--ku-glass-2);
+  border:1px solid var(--ku-stroke-strong);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  color:var(--ku-ice-soft) !important;
+  padding:.4em 1.2em; border-radius:999px;
+  letter-spacing:.22em; text-transform:uppercase; font-size:.72rem;
+  box-shadow:0 0 24px -6px rgba(94,231,255,.5);
+}
+.page_hero-overlay__content h1 {
+  color:#fff; font-size:clamp(2.4rem,6vw,4.6rem);
+  text-shadow:0 2px 40px rgba(94,231,255,.35);
+  margin:.35em 0 .7em;
+}
+.page_hero-overlay__content h1 span:last-child {
+  background:var(--ku-grad-text);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* --------------------------- 9. GLASS CARDS ---------------------------- */
+/* Rasmlar — yumaloq, muz hoshiya, yengil ko'tarilish */
+.content_sections-image,
+.introduction-content__right img,
+.who_we_are-content img,
+.content_sections-content__image img,
+.whats_on-container img,
+img.content_sections-image {
+  border-radius:var(--ku-radius) !important;
+  border:1px solid var(--ku-stroke);
+  box-shadow:var(--ku-shadow);
+}
+
+/* Matn bloklari — frosted glass panel (qorong'i fonda o'qiladi) */
+.content_sections-content__left,
+.content_sections-content__right .content_sections-slider,
+.introduction-content__left,
+.who_we_are-content__text,
+.who_we_are-content__icons-container {
+  background:var(--ku-glass);
+  border:1px solid var(--ku-stroke);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  border-radius:var(--ku-radius-lg);
+  padding:clamp(20px,3vw,38px);
+  box-shadow:var(--ku-shadow-soft);
+}
+
+/* "Who we are" ikonkalar ro'yxati / tanlov */
+.who_we_are-icons__list,
+select.who_we_are-icons__list {
+  background:var(--ku-space-2) !important;
+  color:var(--ku-text) !important;
+  border:1px solid var(--ku-stroke) !important;
+  border-radius:var(--ku-radius-sm) !important;
+}
+
+/* ---------------------- 10. WHAT'S ON / HELP --------------------------- */
+.whats_on-container { position:relative; }
+.whats_on-container article,
+.whats_on-container .post,
+.we_can_help_with-container .inner > * {
+  border-radius:var(--ku-radius);
+}
+
+/* "We can help" — ariza/forma bo'limi uchun glass panel */
+.we_can_help_with-container {
+  background:
+    radial-gradient(900px 480px at 50% 0%, rgba(139,123,255,.14), transparent 60%) !important;
+}
+.gform_wrapper, .gform_wrapper form {
+  background:var(--ku-glass);
+  border:1px solid var(--ku-stroke);
+  -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+  border-radius:var(--ku-radius-lg);
+  padding:clamp(20px,3vw,36px);
+  box-shadow:var(--ku-shadow-soft);
+}
+.gform_title { color:var(--ku-frost); }
+.gform_wrapper input, .gform_wrapper textarea, .gform_wrapper select {
+  background:rgba(5,8,22,.6) !important;
+  color:var(--ku-text) !important;
+  border:1px solid var(--ku-stroke) !important;
+  border-radius:var(--ku-radius-sm) !important;
+}
+.gform_wrapper input:focus, .gform_wrapper textarea:focus, .gform_wrapper select:focus {
+  border-color:var(--ku-ice) !important;
+  box-shadow:0 0 0 3px rgba(94,231,255,.18) !important; outline:none;
+}
+
+/* ------------------------- 11. SEARCH POPUP ---------------------------- */
+#search-popup { background:rgba(5,8,22,.92) !important; -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
+#search-popup input { background:var(--ku-glass-2) !important; color:#fff !important; border:1px solid var(--ku-stroke) !important; border-radius:999px !important; }
+
+/* --------------------------- 12. FOOTER -------------------------------- */
+footer, .site-footer, .footer-container {
+  background:rgba(5,7,15,.75) !important;
+  border-top:1px solid var(--ku-stroke);
+  color:var(--ku-muted);
+}
+footer a { color:var(--ku-ice-soft) !important; }
+
+/* ------------------------ 13. MICRO-INTERACTION ------------------------ */
+.wow { transition:transform .5s ease, opacity .5s ease; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline:2px solid var(--ku-ice); outline-offset:3px; border-radius:6px;
+}
+
+/* ---------------------- 14. REDUCED MOTION ----------------------------- */
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  body::after { animation:none; }
+  body .button:hover { transform:none; }
+  * { transition:none !important; }
+}
+
+/* ------------------------- 15. RESPONSIVE ------------------------------ */
+@media (max-width:860px) {
+  :root { --ku-section-y:clamp(40px,10vw,72px); }
+  .page_hero-overlay__content h1 { font-size:clamp(2rem,9vw,3rem); }
+  .content_sections-content__left,
+  .introduction-content__left { padding:20px; border-radius:var(--ku-radius); }
+}

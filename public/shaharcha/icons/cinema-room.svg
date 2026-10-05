@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-50,-201)">
+        <g id="icon-cinema-room" transform="matrix(0.0280811,0,0,0.0247253,-27.8409,184.459)">
+            <rect x="2772" y="669" width="1282" height="1456" style="fill:none;"/>
+            <g transform="matrix(0.116777,0,0,0.116777,3014.44,1233.86)">
+                <g transform="matrix(148.38,0,0,168.519,-617801,-120357)">
+                    <rect x="4160" y="722.322" width="55.76" height="32.02" style="fill:none;stroke:#173f39;stroke-width:2px;"/>
+                </g>
+                <g transform="matrix(148.38,0,0,168.519,-617801,-120357)">
+                    <rect x="4160" y="714.092" width="55.76" height="8.125" style="fill:none;stroke:#173f39;stroke-width:2px;"/>
+                </g>
+                <g transform="matrix(148.38,0,0,168.519,-617801,-120357)">
+                    <path d="M4213.35,698.456L4159.82,714.092L4157.54,706.293L4211.07,690.656L4213.35,698.456Z" style="fill:none;stroke:#173f39;stroke-width:2px;"/>
+                </g>
+                <g transform="matrix(148.38,0,0,168.519,-617801,-120357)">
+                    <path d="M4181.87,730.019L4196.27,738.332L4181.87,746.644L4181.87,730.019Z" style="fill:none;stroke:#173f39;stroke-width:2px;"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

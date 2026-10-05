@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 36 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-143,-257)">
+        <g id="icon-tv-room" transform="matrix(0.0280811,0,0,0.0247253,65.1591,240.499)">
+            <rect x="2772" y="669" width="1282" height="1456" style="fill:none;"/>
+            <g transform="matrix(23.3609,0,0,26.5315,-1877.21,-829.441)">
+                <path d="M247.872,72.808C247.872,71.962 247.185,71.274 246.338,71.274L207.758,71.274C206.911,71.274 206.224,71.962 206.224,72.808L206.224,102.562C206.224,103.409 206.911,104.096 207.758,104.096L246.338,104.096C247.185,104.096 247.872,103.409 247.872,102.562L247.872,72.808Z" style="fill:none;stroke:#173f39;stroke-width:1.46px;"/>
+                <g transform="matrix(0.714659,0,0,0.714659,64.786,25.0202)">
+                    <path d="M247.872,72.885C247.872,71.996 247.151,71.274 246.262,71.274L207.834,71.274C206.945,71.274 206.224,71.996 206.224,72.885L206.224,102.486C206.224,103.375 206.945,104.096 207.834,104.096L246.262,104.096C247.151,104.096 247.872,103.375 247.872,102.486L247.872,72.885Z" style="fill:none;stroke:#173f39;stroke-width:1.75px;"/>
+                </g>
+                <path d="M216.74,70.936C216.88,65.591 223.869,65.681 223.863,70.936" style="fill:none;stroke:#173f39;stroke-width:1.04px;"/>
+                <path d="M210.339,61.76L217.658,67.672" style="fill:none;stroke:#173f39;stroke-width:1.04px;"/>
+                <path d="M222.986,67.697L230.165,61.464" style="fill:none;stroke:#173f39;stroke-width:1.04px;"/>
+            </g>
+        </g>
+    </g>
+</svg>

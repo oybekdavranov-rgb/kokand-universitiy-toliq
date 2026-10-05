@@ -1,0 +1,283 @@
+/* ============================================================
+   Kokand University — Apple glassmorphism dizayn tizimi
+   Shaffof frosted-glass · blur · yumaloq burchak · yumshoq soya
+   Palitra: --ku-green #003F3F · --ku-cream #F2F0EC
+   ============================================================ */
+
+:root {
+  --ku-green: #003F3F;
+  --ku-green-2: #295e5e;
+  --ku-cream: #F2F0EC;
+  --ku-gold: #b99653;
+  --ku-serif: adobe-caslon-pro, 'Times New Roman', serif;
+
+  /* Glass tokenlari */
+  --glass-bg: rgba(255, 255, 255, 0.62);
+  --glass-bg-strong: rgba(255, 255, 255, 0.78);
+  --glass-card: rgba(255, 255, 255, 0.48);
+  --glass-border: rgba(255, 255, 255, 0.65);
+  --glass-blur: saturate(180%) blur(30px);
+  --glass-blur-lite: saturate(160%) blur(16px);
+  --soft-shadow: 0 10px 40px rgba(0, 40, 40, 0.14), 0 2px 10px rgba(0, 40, 40, 0.08);
+  --soft-shadow-lg: 0 24px 70px rgba(0, 30, 30, 0.28), 0 6px 20px rgba(0, 30, 30, 0.14);
+  --radius-xl: 28px;
+  --radius-lg: 22px;
+  --radius-md: 18px;
+}
+
+.ku-hidden-section { display: none !important; }
+
+/* ---------- Modal (frosted glass) ---------- */
+.ku-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 26, 26, 0.42);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 100000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.ku-modal-overlay.is-open { opacity: 1; visibility: visible; }
+
+.ku-modal {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  color: #16302f;
+  width: min(940px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--soft-shadow-lg);
+  transform: translateY(22px) scale(0.97);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.25, 1);
+  -webkit-overflow-scrolling: touch;
+}
+.ku-modal-overlay.is-open .ku-modal { transform: translateY(0) scale(1); }
+
+.ku-modal__close {
+  position: sticky;
+  top: 16px;
+  float: right;
+  margin: 16px 16px 0 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: var(--glass-blur-lite);
+  -webkit-backdrop-filter: var(--glass-blur-lite);
+  color: var(--ku-green) !important;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 5;
+  box-shadow: 0 2px 10px rgba(0, 40, 40, 0.12);
+  background: rgba(255, 255, 255, 0.55) !important;
+  text-transform: none !important;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+.ku-modal__close:hover { background: rgba(255, 255, 255, 0.9) !important; transform: rotate(90deg) scale(1.05); }
+
+.ku-modal__body { padding: 10px 38px 40px; }
+
+.ku-modal__head { margin-bottom: 24px; }
+.ku-modal__head h2 {
+  font-family: var(--ku-serif);
+  color: var(--ku-green);
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  margin: 0 0 8px;
+  letter-spacing: 0.01em;
+}
+.ku-modal__head p { color: #47585a; margin: 0; font-size: 1.05rem; }
+
+/* ---------- Natijalar (achievements) — glass kartalar ---------- */
+.ku-ach-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
+  gap: 22px;
+}
+.ku-ach-card {
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--glass-card);
+  backdrop-filter: var(--glass-blur-lite);
+  -webkit-backdrop-filter: var(--glass-blur-lite);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--soft-shadow);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.25, 1), box-shadow 0.3s ease;
+}
+.ku-ach-card:hover { transform: translateY(-6px); box-shadow: var(--soft-shadow-lg); }
+.ku-ach-card__img { aspect-ratio: 4 / 3; overflow: hidden; background: rgba(0, 63, 63, 0.06); }
+.ku-ach-card__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.ku-ach-card:hover .ku-ach-card__img img { transform: scale(1.05); }
+.ku-ach-card__body { padding: 18px 20px 22px; }
+.ku-ach-card__body h3 { font-family: var(--ku-serif); color: var(--ku-green); font-size: 1.3rem; margin: 0 0 4px; }
+.ku-ach-card__sub { color: var(--ku-gold); font-weight: 600; font-size: 0.9rem; margin: 0 0 10px; }
+.ku-ach-card__body p { margin: 0; color: #45514f; font-size: 0.95rem; line-height: 1.55; }
+
+/* ---------- Batafsil (distinction / interest / programme detail) ---------- */
+.ku-detail { display: grid; grid-template-columns: 1fr; gap: 26px; }
+@media (min-width: 720px) { .ku-detail { grid-template-columns: 320px 1fr; } }
+.ku-detail__img {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  align-self: start;
+  box-shadow: var(--soft-shadow);
+  border: 1px solid var(--glass-border);
+}
+.ku-detail__img img { width: 100%; height: 100%; max-height: 400px; object-fit: cover; display: block; }
+.ku-detail__body h2 {
+  font-family: var(--ku-serif);
+  color: var(--ku-green);
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  margin: 0 0 10px;
+}
+.ku-detail__lead { font-size: 1.12rem; color: var(--ku-green-2); font-weight: 600; margin: 0 0 14px; }
+.ku-detail__text { color: #3d4a49; line-height: 1.75; font-size: 1.03rem; }
+.ku-detail__actions { margin-top: 24px; }
+
+/* ---------- Dasturlar (programme) modal ---------- */
+.ku-prog__hero {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 22px;
+  box-shadow: var(--soft-shadow);
+  border: 1px solid var(--glass-border);
+}
+.ku-prog__hero img { width: 100%; max-height: 300px; object-fit: cover; display: block; }
+.ku-prog__hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0, 40, 40, 0.78), rgba(0, 40, 40, 0.05) 60%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 24px 26px; color: #fff;
+}
+.ku-prog__hero-overlay h2 { font-family: var(--ku-serif); font-size: clamp(1.7rem, 3vw, 2.4rem); margin: 0 0 4px; color: #fff !important; text-shadow: 0 2px 12px rgba(0,0,0,0.4); }
+.ku-prog__hero-overlay p { margin: 0; opacity: 0.95; font-size: 1.05rem; color: #fff !important; }
+.ku-prog__intro { color: #3d4a49; line-height: 1.75; font-size: 1.04rem; margin: 0 0 24px; }
+
+.ku-prog__section-title {
+  font-family: var(--ku-serif); color: var(--ku-green);
+  font-size: 1.4rem; margin: 26px 0 14px; letter-spacing: 0.01em;
+}
+/* Highlights — checklist */
+.ku-prog__highlights { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); margin: 0 0 6px; }
+.ku-prog__hl {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: var(--glass-card);
+  backdrop-filter: var(--glass-blur-lite);
+  -webkit-backdrop-filter: var(--glass-blur-lite);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px; padding: 14px 16px;
+  box-shadow: 0 4px 16px rgba(0, 40, 40, 0.07);
+  color: #33433f; font-size: 0.97rem; line-height: 1.45;
+}
+.ku-prog__hl::before {
+  content: '✓'; flex: 0 0 22px; width: 22px; height: 22px; margin-top: 1px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--ku-green); color: #fff; border-radius: 50%; font-size: 0.8rem; font-weight: 700;
+}
+/* FAQ — accordion */
+.ku-faq { display: flex; flex-direction: column; gap: 10px; }
+.ku-faq__item {
+  background: var(--glass-card);
+  backdrop-filter: var(--glass-blur-lite);
+  -webkit-backdrop-filter: var(--glass-blur-lite);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 40, 40, 0.06);
+}
+.ku-faq__q {
+  width: 100%; text-align: left !important; cursor: pointer; border: none !important;
+  background: transparent !important; box-shadow: none !important; text-transform: none !important;
+  letter-spacing: normal !important; border-radius: 0 !important;
+  padding: 16px 20px; font-size: 1.02rem; font-weight: 600; color: var(--ku-green) !important;
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+}
+.ku-faq__q:hover { background: rgba(0, 63, 63, 0.05) !important; }
+.ku-faq__q::after { content: '＋'; font-size: 1.15rem; color: var(--ku-gold); transition: transform 0.3s ease; }
+.ku-faq__item.open .ku-faq__q::after { content: '－'; }
+.ku-faq__a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; padding: 0 20px; color: #3d4a49; line-height: 1.7; }
+.ku-faq__item.open .ku-faq__a { max-height: 600px; padding: 0 20px 18px; }
+
+/* ---------- Tugmalar ---------- */
+.ku-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--ku-green); color: #fff !important; text-decoration: none;
+  padding: 13px 26px; border-radius: 999px; font-weight: 600; letter-spacing: 0.03em;
+  border: none; cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 63, 63, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.ku-btn:hover { background: var(--ku-green-2); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0, 63, 63, 0.32); }
+
+.ku-more-btn {
+  margin-top: 12px;
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: var(--glass-blur-lite);
+  -webkit-backdrop-filter: var(--glass-blur-lite);
+  color: var(--ku-green); border: 1px solid var(--glass-border);
+  padding: 10px 22px; border-radius: 999px; font-weight: 600; font-size: 0.9rem; cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 40, 40, 0.1);
+  transition: background 0.25s ease, transform 0.25s ease, color 0.25s ease;
+}
+.ku-more-btn:hover { background: var(--ku-green); color: #fff; transform: translateY(-2px); }
+
+/* Kartalar ustiga bosilganda kursor */
+[data-ku-interests] .greenes-page { cursor: pointer; }
+[data-ku-programmes] a { cursor: pointer; }
+
+/* ---------- Rahbariyat (OUR DIRECTOR) joylashuvi (slick-safe) ---------- */
+@media (min-width: 68rem) {
+  .content_sections-container[data-id="2"] .content_sections-content { align-items: center; }
+  .content_sections-container[data-id="2"] .content_sections-content__left { align-self: center; }
+}
+.content_sections-container[data-id="2"] .content_sections-image img {
+  border-radius: var(--radius-md);
+  box-shadow: var(--soft-shadow-lg);
+  max-height: 560px; object-fit: cover; margin: 0 auto;
+}
+.content_sections-container[data-id="2"] .content_sections-content__image { text-align: center; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 560px) {
+  .ku-modal__body { padding: 8px 20px 30px; }
+  .ku-modal__close { margin-right: 12px; }
+  .ku-prog__hero-overlay { padding: 18px; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .ku-modal, .ku-ach-card, .ku-btn, .ku-more-btn, .ku-ach-card__img img { transition: none !important; }
+}
+
+/* ============================================================
+   Greene's saytidan qolgan begona vidjetlarni yashirish
+   (CookieYes cookie banner, MoneyPenny chat).
+   Bular KU sayti uchun kerak emas va menyuni to'sib turardi.
+   ============================================================ */
+#cookie-law-info-bar,
+#cookie-law-info-again,
+#cookie_hdr_showagain,
+.cli-modal,
+.cli-modal-backdrop,
+.cli-bar-container,
+.wt-cli-cookie-bar,
+#moneypenny-chat,
+[id^="moneypenny"],
+[class^="moneypenny"] {
+  display: none !important;
+  visibility: hidden !important;
+}

@@ -1,0 +1,253 @@
+/* ============================================================
+   Kokand University — umumiy UX uslublari
+   Dark mode + sahifa o'tishi + magnetic + mikro-animatsiyalar
+   ============================================================ */
+
+/* ---------- DARK MODE ---------- */
+:root[data-theme="dark"] {
+  --cream: #0C1E29;
+  --ink: #EAF2F6;
+  --green: #F2C14E;
+  --green-2: #F7D79B;
+  --line: rgba(255, 255, 255, .14);
+  --glass: rgba(23, 45, 60, .7);
+  --glass-bg: rgba(23, 45, 60, .7);
+  --glass-brd: rgba(255, 255, 255, .1);
+  --sh: 0 22px 60px rgba(0, 0, 0, .55), 0 3px 10px rgba(0, 0, 0, .3);
+  --soft-shadow-lg: 0 22px 60px rgba(0, 0, 0, .55);
+  color-scheme: dark;
+}
+
+:root[data-theme="dark"] body {
+  background: #0C1E29;
+  color: #EAF2F6;
+}
+
+/* Umumiy: och fonli bloklarni qoraytiramiz */
+:root[data-theme="dark"] .ku-wrap,
+:root[data-theme="dark"] .g-wrap,
+:root[data-theme="dark"] .wrap,
+:root[data-theme="dark"] main,
+:root[data-theme="dark"] section:not(.hero):not(.g-hero):not(.ku-stories-hero):not(.page_hero-container) {
+  background-color: transparent;
+}
+:root[data-theme="dark"] .introduction-container,
+:root[data-theme="dark"] .content_sections-container,
+:root[data-theme="dark"] .whats_on-container,
+:root[data-theme="dark"] .who_we_are-container,
+:root[data-theme="dark"] .greenes-pages-container,
+:root[data-theme="dark"] .site-header,
+:root[data-theme="dark"] .site-footer {
+  background-color: #0C1E29 !important;
+  color: #EAF2F6;
+}
+/* Matn: oddiy matn — och kul rang, SARLAVHALAR (katta harfli) — PALESUN YELLOW */
+:root[data-theme="dark"] p,
+:root[data-theme="dark"] li,
+:root[data-theme="dark"] span:not(.g-card__tag):not(.card .city):not(.card .price):not(.ku-story-card__cat):not(.kick),
+:root[data-theme="dark"] a:not(.btn):not(.cta):not(.g-chip):not(.ku-chip):not(.hd nav a) {
+  color: #EAF2F6;
+}
+/* SARLAVHALAR — sariq */
+:root[data-theme="dark"] h1,
+:root[data-theme="dark"] h2,
+:root[data-theme="dark"] h3,
+:root[data-theme="dark"] h4,
+:root[data-theme="dark"] .sec-t,
+:root[data-theme="dark"] .fs__in h1,
+:root[data-theme="dark"] .fs__bar h2,
+:root[data-theme="dark"] .pcard h3,
+:root[data-theme="dark"] .card .bd h3,
+:root[data-theme="dark"] .g-card__body h3,
+:root[data-theme="dark"] .ku-story-card__body h3,
+:root[data-theme="dark"] .feat h4,
+:root[data-theme="dark"] .step h4,
+:root[data-theme="dark"] .dlg h2,
+:root[data-theme="dark"] .g-dlg h2,
+:root[data-theme="dark"] .ku-dlg h2 {
+  color: #F2C14E !important;
+}
+/* Navigatsiya havolalari (katta harfli) — sariq */
+:root[data-theme="dark"] .hd nav a:not(.cta),
+:root[data-theme="dark"] .g-nav a,
+:root[data-theme="dark"] .ft a,
+:root[data-theme="dark"] #menu-main-menu > li > a,
+:root[data-theme="dark"] #menu-top-menu > li > a,
+:root[data-theme="dark"] .more,
+:root[data-theme="dark"] .pcard .more,
+:root[data-theme="dark"] .card .more,
+:root[data-theme="dark"] .ku-story-card__more {
+  color: #F2C14E !important;
+}
+/* Sariq FON ustidagi matn — to'q ko'k (kontrast) */
+:root[data-theme="dark"] .btn-l, :root[data-theme="dark"] .hd .cta,
+:root[data-theme="dark"] .g-chip.active, :root[data-theme="dark"] .ku-chip.active,
+:root[data-theme="dark"] .cta-box .btn-l {
+  color: #0C1E29 !important;
+}
+:root[data-theme="dark"] .muted,
+:root[data-theme="dark"] .sec-s,
+:root[data-theme="dark"] .card .bd p,
+:root[data-theme="dark"] .g-card__body p,
+:root[data-theme="dark"] .ku-story-card__body p,
+:root[data-theme="dark"] .feat p,
+:root[data-theme="dark"] .step p,
+:root[data-theme="dark"] .stat span {
+  color: #9BB2C0 !important;
+}
+
+/* Shisha (glass) kartalar — qorong'i variant */
+:root[data-theme="dark"] .g-card,
+:root[data-theme="dark"] .card,
+:root[data-theme="dark"] .ku-story-card,
+:root[data-theme="dark"] .feat,
+:root[data-theme="dark"] .step,
+:root[data-theme="dark"] .stat,
+:root[data-theme="dark"] .ku-modal,
+:root[data-theme="dark"] .g-dlg,
+:root[data-theme="dark"] .dlg,
+:root[data-theme="dark"] .ku-dlg {
+  background: rgba(23, 45, 60, .78) !important;
+  border-color: rgba(255, 255, 255, .1) !important;
+  color: #EAF2F6;
+}
+:root[data-theme="dark"] .g-chip,
+:root[data-theme="dark"] .ku-chip {
+  background: rgba(23, 45, 60, .74);
+  border-color: rgba(255, 255, 255, .16);
+  color: #D6E4EC;
+}
+:root[data-theme="dark"] .g-chip.active,
+:root[data-theme="dark"] .ku-chip.active {
+  background: #F2C14E;
+  color: #0C1E29;
+  border-color: #F2C14E;
+}
+:root[data-theme="dark"] .g-dlg__close,
+:root[data-theme="dark"] .dlg .x,
+:root[data-theme="dark"] .ku-modal__close,
+:root[data-theme="dark"] .ku-dlg__close {
+  background: rgba(30, 55, 72, .92) !important;
+  color: #EAF2F6 !important;
+}
+:root[data-theme="dark"] .amen span {
+  background: rgba(255, 254, 21, .14);
+  border-color: rgba(255, 254, 21, .34);
+  color: #F7D79B;
+}
+:root[data-theme="dark"] .ku-prog__hl,
+:root[data-theme="dark"] .ku-faq__item {
+  background: rgba(23, 45, 60, .74) !important;
+  color: #EAF2F6;
+}
+:root[data-theme="dark"] img:not([src*=".svg"]) { filter: brightness(.92); }
+:root[data-theme="dark"] .ft { background: #071620; }
+
+/* ---------- TEMA TUGMASI ---------- */
+.ku-theme-btn {
+  position: fixed; right: 18px; bottom: 18px; z-index: 90;
+  width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,.35);
+  background: rgba(12, 30, 41, .82); color: #fff; font-size: 20px; line-height: 1;
+  cursor: pointer; backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .28);
+  transition: transform .25s cubic-bezier(.2,.8,.25,1), background .25s;
+  display: flex; align-items: center; justify-content: center;
+}
+.ku-theme-btn:hover { transform: scale(1.08); }
+:root[data-theme="dark"] .ku-theme-btn {
+  background: #F2C14E; color: #0C1E29; border-color: rgba(0,0,0,.18);
+}
+
+/* ---------- SAHIFA O'TISHI ---------- */
+.ku-veil {
+  position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  background: #0C1E29; opacity: 1;
+  transition: opacity .42s cubic-bezier(.2,.8,.25,1);
+}
+body.ku-ready .ku-veil { opacity: 0; }
+body.ku-leaving .ku-veil { opacity: 1; transition-duration: .32s; }
+body { transition: opacity .3s ease; }
+body.ku-leaving { opacity: .96; }
+
+/* ---------- MAGNETIC + MIKRO-ANIMATSIYA ---------- */
+.btn, .ku-btn, .g-chip, .ku-chip, .primary-btn, .cta {
+  transition: transform .28s cubic-bezier(.2,.8,.25,1), background .25s, color .25s, box-shadow .25s;
+  will-change: transform;
+}
+.btn:active, .ku-btn:active, .g-chip:active, .ku-chip:active,
+.primary-btn:active, .cta:active, .ku-theme-btn:active {
+  transform: scale(.96) !important;
+}
+
+.ku-ripple {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  background: rgba(255, 255, 255, .45);
+  transform: scale(0); opacity: .8;
+  animation: kuRipple .6s cubic-bezier(.2,.8,.25,1) forwards;
+}
+:root[data-theme="dark"] .ku-ripple { background: rgba(255,255,255,.24); }
+@keyframes kuRipple { to { transform: scale(2.4); opacity: 0; } }
+
+/* forma yuborilayotganda tugma */
+.ku-busy { position: relative; pointer-events: none; opacity: .85; }
+.ku-busy::after {
+  content: ''; position: absolute; right: 14px; top: 50%; width: 15px; height: 15px;
+  margin-top: -7px; border-radius: 50%;
+  border: 2px solid currentColor; border-right-color: transparent;
+  animation: kuSpin .7s linear infinite;
+}
+@keyframes kuSpin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .ku-veil, .ku-ripple { display: none !important; }
+  .btn, .ku-btn, .g-chip, .ku-chip, .primary-btn, .cta { transition: none; }
+}
+
+/* CTA quti — dark rejimda o'qilishi uchun to'q fon */
+:root[data-theme="dark"] .cta-box {
+  background: linear-gradient(135deg, #0f2634, #17384a) !important;
+  color: #EAF2F6;
+  border: 1px solid rgba(127, 212, 196, .22);
+}
+:root[data-theme="dark"] .cta-box h2,
+:root[data-theme="dark"] .cta-box p { color: #EAF2F6 !important; }
+:root[data-theme="dark"] .cta-box .btn-l { background: #F2C14E; color: #0C1E29; }
+:root[data-theme="dark"] .cta-box .btn-o {
+  background: rgba(255,255,255,.1); color: #EAF2F6; border-color: rgba(255,255,255,.3);
+}
+/* to'liq ekran modal — dark */
+:root[data-theme="dark"] .fs { background: #0C1E29; }
+:root[data-theme="dark"] .fsq { background: rgba(23,45,60,.74); border-color: rgba(255,255,255,.12); }
+:root[data-theme="dark"] .fsq button { color: #F7D79B; }
+:root[data-theme="dark"] .fsq .a, :root[data-theme="dark"] .fs__txt,
+:root[data-theme="dark"] .fs__lead { color: #C2D4DE; }
+:root[data-theme="dark"] .fs__txt strong { color: #F2C14E; }
+:root[data-theme="dark"] .pcard { background: rgba(23,45,60,.78) !important; border-color: rgba(255,255,255,.1) !important; }
+:root[data-theme="dark"] .pcard p { color: #9fb3af; }
+:root[data-theme="dark"] .pcard .more, :root[data-theme="dark"] .card .more,
+:root[data-theme="dark"] .stat b { color: #F2C14E; }
+
+/* ============================================================
+   LOGO: dark rejimda OQ variant, yorug'da QORA variant
+   ============================================================ */
+.ku-logo-dark { display: none; }
+:root[data-theme="dark"] .ku-logo-light { display: none; }
+:root[data-theme="dark"] .ku-logo-dark { display: block; }
+/* Logoga brightness filtri qo'llanmasin */
+:root[data-theme="dark"] img.ku-logo-dark,
+:root[data-theme="dark"] img.ku-logo-light { filter: none !important; }
+
+/* Akcent rang — PALESUN YELLOW ustidagi matn har doim to'q ko'k */
+:root[data-theme="dark"] .btn-l,
+:root[data-theme="dark"] .hd .cta,
+:root[data-theme="dark"] .g-card__tag,
+:root[data-theme="dark"] .card .price,
+:root[data-theme="dark"] .dlg .tag {
+  background: #F2C14E !important; color: #0C1E29 !important;
+}
+:root[data-theme="dark"] .kick { color: #F2C14E; }
+:root[data-theme="dark"] .ln:hover, :root[data-theme="dark"] .ln:focus-visible {
+  color: #0C1E29; /* sariq fon ustida to'q ko'k matn */
+}
+/* Yorug' rejimda ham akcent sariq bo'lsa matn to'q ko'k bo'lsin */
+.btn-l, .hd .cta, .g-card__tag, .card .price { color: #0C1E29; }

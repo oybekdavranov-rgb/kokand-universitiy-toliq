@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yangiliklar | Kokand University</title>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="icon" href="/images/cropped-favicon-32x32.png" sizes="32x32">
+<style>
+  :root { --ku-green: #003F3F; --ku-green-2: #295e5e; --ku-cream: #F2F0EC; --ku-gold: #b99653; --ku-serif: adobe-caslon-pro, 'Times New Roman', serif; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--ku-cream); color: #1c2b2b; font-family: Avenir, 'Avenir-Imp', sans-serif; }
+  a { color: inherit; }
+  .ku-page-header {
+    background: var(--ku-green); color: #fff; padding: 18px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .ku-page-header img { height: 44px; width: auto; }
+  .ku-page-header a.home-link { color: #fff; text-decoration: none; font-weight: 600; letter-spacing: 0.04em; border: 1px solid rgba(255,255,255,0.4); padding: 8px 18px; border-radius: 999px; transition: background .2s; }
+  .ku-page-header a.home-link:hover { background: rgba(255,255,255,0.14); }
+  .ku-hero { text-align: center; padding: 54px 24px 20px; }
+  .ku-hero h1 { font-family: var(--ku-serif); color: var(--ku-green); font-size: clamp(2rem, 5vw, 3rem); margin: 0 0 8px; letter-spacing: .04em; text-transform: uppercase; }
+  .ku-hero p { color: var(--ku-green-2); margin: 0; }
+  .ku-wrap { max-width: 1120px; margin: 0 auto; padding: 24px; }
+  .ku-news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 26px; padding-bottom: 60px; }
+  .ku-news-card { background: rgba(255,255,255,0.72); backdrop-filter: saturate(160%) blur(16px); -webkit-backdrop-filter: saturate(160%) blur(16px); border: 1px solid rgba(255,255,255,0.6); border-radius: 22px; overflow: hidden; text-decoration: none; color: inherit; box-shadow: 0 10px 40px rgba(0,40,40,0.12), 0 2px 10px rgba(0,40,40,0.06); display: flex; flex-direction: column; transition: transform .3s cubic-bezier(.2,.8,.25,1), box-shadow .3s ease; }
+  .ku-news-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,40,40,0.2); }
+  .ku-news-card__img img { transition: transform .5s ease; }
+  .ku-news-card:hover .ku-news-card__img img { transform: scale(1.05); }
+  .ku-news-card__img { aspect-ratio: 16/10; overflow: hidden; background: #dfe4e2; }
+  .ku-news-card__img img { width: 100%; height: 100%; object-fit: cover; }
+  .ku-news-card__body { padding: 20px 22px 26px; flex: 1; display: flex; flex-direction: column; }
+  .ku-news-card__date { color: var(--ku-gold); font-weight: 600; font-size: .85rem; margin: 0 0 8px; text-transform: uppercase; letter-spacing: .04em; }
+  .ku-news-card__title { font-family: var(--ku-serif); color: var(--ku-green); font-size: 1.35rem; margin: 0 0 10px; line-height: 1.25; }
+  .ku-news-card__excerpt { color: #45514f; font-size: .96rem; line-height: 1.55; margin: 0; }
+  /* Detail */
+  .ku-detail-view { max-width: 820px; margin: 0 auto; padding: 20px 24px 80px; }
+  .ku-detail-view .back { display: inline-block; margin-bottom: 22px; color: var(--ku-green); text-decoration: none; font-weight: 600; }
+  .ku-detail-view .back:hover { text-decoration: underline; }
+  .ku-detail-view h1 { font-family: var(--ku-serif); color: var(--ku-green); font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 6px 0 10px; line-height: 1.2; }
+  .ku-detail-view .date { color: var(--ku-gold); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; font-size: .9rem; }
+  .ku-detail-view .cover { width: 100%; border-radius: 18px; margin: 22px 0 26px; max-height: 460px; object-fit: cover; box-shadow: 0 20px 45px rgba(0,63,63,0.16); }
+  .ku-detail-view .body { color: #384644; line-height: 1.8; font-size: 1.08rem; white-space: pre-line; }
+  .ku-detail-view .source { margin-top: 30px; }
+  .ku-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--ku-green); color: #fff; text-decoration: none; padding: 12px 26px; border-radius: 999px; font-weight: 600; letter-spacing: .04em; transition: background .2s, transform .2s; }
+  .ku-btn:hover { background: var(--ku-green-2); transform: translateY(-2px); }
+  .ku-empty { text-align: center; color: var(--ku-green-2); padding: 60px 0; }
+</style>
+  <link rel="stylesheet" href="/css/ku-fonts.css">
+<link rel="stylesheet" href="/css/ku-ux.css">
+<link rel="stylesheet" href="/css/ku-theme.css">
+<link rel="stylesheet" href="/css/ku-cosmic.css">
+</head>
+<body>
+<header class="ku-page-header">
+  <a href="/"><img class="ku-logo-light" src="/images/logo2.png" alt="Kokand University"><img class="ku-logo-dark" src="/images/logo2-white.png" alt="Kokand University"></a>
+  <a class="home-link" href="/">← Bosh sahifa</a>
+</header>
+<main id="ku-news-root">
+  <div class="ku-empty">Yuklanmoqda…</div>
+</main>
+<script>
+(function () {
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c];}); }
+  var root = document.getElementById('ku-news-root');
+  var params = new URLSearchParams(location.search);
+  var id = params.get('id');
+
+  fetch('/api/public/site').then(function(r){return r.json();}).then(function(data){
+    var news = (data && data.news) || [];
+    var title = (data && data.settings && data.settings.news_title) || 'Yangiliklar';
+    if (id) { renderDetail(news, title); } else { renderList(news, title); }
+  }).catch(function(){ root.innerHTML = '<div class="ku-empty">Maʼlumotni yuklab boʻlmadi.</div>'; });
+
+  function renderList(news, title){
+    document.title = title + ' | Kokand University';
+    var hero = '<section class="ku-hero"><h1>' + esc(title) + '</h1><p>Universitet hayotidagi soʻnggi voqealar</p></section>';
+    if (!news.length){ root.innerHTML = hero + '<div class="ku-empty">Hozircha yangilik yoʻq.</div>'; return; }
+    var cards = news.map(function(n){
+      return '<a class="ku-news-card" href="/news.html?id=' + n.id + '">' +
+        '<div class="ku-news-card__img">' + (n.image ? '<img src="' + esc(n.image) + '" alt="' + esc(n.title) + '" loading="lazy">' : '') + '</div>' +
+        '<div class="ku-news-card__body">' +
+        '<p class="ku-news-card__date">' + esc(n.date||'') + '</p>' +
+        '<h2 class="ku-news-card__title">' + esc(n.title) + '</h2>' +
+        (n.excerpt ? '<p class="ku-news-card__excerpt">' + esc(n.excerpt) + '</p>' : '') +
+        '</div></a>';
+    }).join('');
+    root.innerHTML = hero + '<div class="ku-wrap"><div class="ku-news-grid">' + cards + '</div></div>';
+  }
+
+  function renderDetail(news, title){
+    var n = news.filter(function(x){ return String(x.id) === String(id); })[0];
+    if (!n){ root.innerHTML = '<div class="ku-detail-view"><a class="back" href="/news.html">← Barcha yangiliklar</a><div class="ku-empty">Yangilik topilmadi.</div></div>'; return; }
+    document.title = n.title + ' | Kokand University';
+    root.innerHTML = '<article class="ku-detail-view">' +
+      '<a class="back" href="/news.html">← Barcha yangiliklar</a>' +
+      '<p class="date">' + esc(n.date||'') + '</p>' +
+      '<h1>' + esc(n.title) + '</h1>' +
+      (n.image ? '<img class="cover" src="' + esc(n.image) + '" alt="' + esc(n.title) + '">' : '') +
+      '<div class="body">' + esc(n.body || n.excerpt || '') + '</div>' +
+      (n.link ? '<div class="source"><a class="ku-btn" href="' + esc(n.link) + '" target="_blank" rel="noopener">Manba / batafsil →</a></div>' : '') +
+      '</article>';
+  }
+})();
+</script>
+<script src="/i18n.js" defer></script>
+<script src="/ku-protect.js" defer></script>
+<script src="/ku-ux.js" defer></script>
+<script src="/ku-enhance.js" defer></script>
+</body>
+</html>

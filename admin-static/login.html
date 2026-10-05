@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | Kokand University CMS</title>
+  <link rel="stylesheet" href="/admin-static/admin.css">
+</head>
+<body class="login-page">
+  <main class="login-shell">
+    <section class="login-card">
+      <div class="brand-pill">Kokand University CMS</div>
+      <h1>Admin panelga kirish</h1>
+      <p class="muted">Saytdagi matn, link, rasm, video va yangiliklarni shu yerdan boshqaring.</p>
+      <form id="loginForm" class="stack">
+        <label>
+          <span>Email (login)</span>
+          <input type="email" id="email" placeholder="admin@kokandu.uz" required>
+        </label>
+        <label>
+          <span>Parol</span>
+          <input type="password" id="password" placeholder="••••••••" required>
+        </label>
+        <button type="submit" class="primary-btn">Kirish</button>
+      </form>
+      <p id="loginMessage" class="form-message"></p>
+      <div class="login-help">
+        <strong>Ikki xil admin:</strong><br>
+        <span>• <b>Editor</b> — matn, rasm, link, logoni tahrirlaydi</span><br>
+        <span>• <b>Staff</b> — hammasini + orqafon va adminlarni boshqaradi</span>
+      </div>
+      <a href="/" class="subtle-link">← Saytga qaytish</a>
+    </section>
+  </main>
+  <script src="/admin-static/login.js" defer></script>
+</body>
+</html>

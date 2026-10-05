@@ -1,0 +1,307 @@
+/* ============================================================
+   Kokand University — TEMA QATLAMI (ku-theme.css)
+   Barcha sahifalarda ku-ux.css dan KEYIN yuklanadi.
+   1) 5 ta ko'zga yumshoq shrift (display / UI / matn / o'qish / urg'u)
+   2) O'qish qulayligi (interval, antialiasing, o'lcham)
+   3) Apple "liquid glass" estetikasi (frosted shisha yuzalar)
+   Dark-mode ku-ux.css da !important bilan boshqariladi — bu fayl
+   unga xalaqit bermaydi (faqat shrift + yorug' rejim shishasini beradi).
+   ============================================================ */
+
+/* ---------------- 1) SHRIFT TOKENLARI ---------------- */
+:root {
+  --ku-font-display: 'Fraunces', 'adobe-caslon-pro', Georgia, 'Times New Roman', serif; /* sarlavhalar */
+  --ku-font-ui:      'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif; /* menyu/tugma */
+  --ku-font-body:    'Inter', system-ui, -apple-system, 'Segoe UI', Avenir, sans-serif;     /* umumiy matn */
+  --ku-font-read:    'Literata', Georgia, 'Times New Roman', serif;   /* uzun o'qish matni */
+  --ku-font-accent:  'Nunito', system-ui, -apple-system, sans-serif;  /* sana/yorliq/chip */
+}
+
+/* ---------------- 2) O'QISH QULAYLIGI ---------------- */
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--ku-font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  letter-spacing: .005em;
+}
+/* Umumiy matn elementlari — yumshoq sans, qulay interval.
+   (span/div/i ga tegmaymiz — Material Icons buzilmasin) */
+p, li, a, label, td, th, blockquote, figcaption, dd, dt {
+  font-family: var(--ku-font-body) !important;
+}
+p, li, blockquote { line-height: 1.75; }
+
+/* Sarlavhalar — yumshoq optik serif (Fraunces) */
+h1, h2, h3, h4, h5, h6,
+.ku-hero h1, .ku-detail__body h2, .ku-prog__hero-overlay h2,
+.ku-news-card__title, .greenes-post-content__title, .ku-modal__head h2 {
+  font-family: var(--ku-font-display) !important;
+  letter-spacing: .004em;
+  line-height: 1.22;
+  font-optical-sizing: auto;
+}
+
+/* Menyu, tugma, chip, UI boshqaruvlari — yumshoq geometrik sans */
+.ku-btn, .btn, button, .cta, .g-chip, .ku-chip, .primary-btn, .secondary-btn,
+nav a, .menu a, #menu-main-menu > li > a, #menu-top-menu > li > a,
+.nav-btn, .home-link {
+  font-family: var(--ku-font-ui) !important;
+  letter-spacing: .012em;
+}
+
+/* Uzun o'qiladigan matn (yangilik/hikoya/modal tanasi) — o'qishga mo'ljallangan serif */
+.ku-detail-view .body, .ku-detail__text, .ku-prog__intro,
+.ku-modal__body p, .ku-ach-card__body p, .ku-news-card__excerpt {
+  font-family: var(--ku-font-read) !important;
+  line-height: 1.8;
+}
+
+/* Urg'u: sana, yorliq, kategoriya, chip — yumshoq rounded sans */
+.ku-news-card__date, .greenes-post-content__date, .badge, .meta-chip,
+.ku-story-card__cat, .kick, .stat span, .ku-prog__section-title {
+  font-family: var(--ku-font-accent) !important;
+  letter-spacing: .02em;
+}
+
+/* ---------------- 3) APPLE "LIQUID GLASS" ---------------- */
+:root {
+  --ku-glass-bg:        rgba(255, 255, 255, 0.55);
+  --ku-glass-bg-strong: rgba(255, 255, 255, 0.72);
+  --ku-glass-brd:       rgba(255, 255, 255, 0.65);
+  --ku-glass-hi:        rgba(255, 255, 255, 0.9);  /* yuqori yorug'lik chizig'i */
+  --ku-glass-blur:      20px;
+  --ku-glass-radius:    22px;
+  --ku-glass-shadow:    0 10px 36px rgba(0, 45, 45, 0.14), 0 2px 10px rgba(0, 45, 45, 0.08);
+}
+:root[data-theme="dark"] {
+  --ku-glass-bg:        rgba(20, 38, 50, 0.58);
+  --ku-glass-bg-strong: rgba(20, 38, 50, 0.76);
+  --ku-glass-brd:       rgba(255, 255, 255, 0.12);
+  --ku-glass-hi:        rgba(255, 255, 255, 0.14);
+  --ku-glass-shadow:    0 14px 44px rgba(0, 0, 0, 0.5), 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+/* Qayta ishlatiladigan yordamchi + mavjud kartalar/modal/overlaylar */
+.ku-glass,
+.ku-news-card,
+.ku-ach-card,
+.ku-detail,
+.ku-modal {
+  background: var(--ku-glass-bg);
+  -webkit-backdrop-filter: saturate(180%) blur(var(--ku-glass-blur));
+  backdrop-filter: saturate(180%) blur(var(--ku-glass-blur));
+  border: 1px solid var(--ku-glass-brd);
+  box-shadow: var(--ku-glass-shadow);
+  border-radius: var(--ku-glass-radius);
+  position: relative;
+}
+/* Yuqori qirrada nozik "specular" yorug'lik — Apple shisha hissi */
+.ku-glass::before,
+.ku-news-card::before,
+.ku-modal::before {
+  content: '';
+  position: absolute; left: 0; right: 0; top: 0; height: 40%;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--ku-glass-hi), transparent);
+  opacity: .5; pointer-events: none;
+}
+
+/* Modal: kuchliroq shisha + ortni xiralashtirish */
+.ku-modal { background: var(--ku-glass-bg-strong); }
+.ku-modal-overlay {
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  background: rgba(8, 24, 28, 0.42) !important;
+}
+
+/* Tugmalar — nozik shisha/gradient yuza */
+.ku-btn {
+  -webkit-backdrop-filter: saturate(160%) blur(8px);
+  backdrop-filter: saturate(160%) blur(8px);
+  box-shadow: 0 6px 18px rgba(0, 45, 45, 0.18), inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+/* Tema tugmasi — yanada toza shisha pill */
+.ku-theme-btn {
+  background: var(--ku-glass-bg-strong) !important;
+  border: 1px solid var(--ku-glass-brd) !important;
+  color: #0b3a3a !important;
+  box-shadow: var(--ku-glass-shadow) !important;
+}
+:root[data-theme="dark"] .ku-theme-btn { color: #ffef7a !important; }
+
+/* Oddiy sahifa sarlavha paneli — yopishqoq + shisha (news/stories/galereya) */
+.ku-page-header {
+  position: sticky; top: 0; z-index: 50;
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  backdrop-filter: saturate(180%) blur(16px);
+  box-shadow: 0 6px 24px rgba(0, 40, 40, 0.14);
+}
+
+/* FAQ va dastur kartalari uchun nozik shisha (yorug' rejim) */
+.ku-prog__hl, .ku-faq__item {
+  background: var(--ku-glass-bg);
+  border: 1px solid var(--ku-glass-brd);
+  border-radius: 14px;
+  -webkit-backdrop-filter: saturate(150%) blur(10px);
+  backdrop-filter: saturate(150%) blur(10px);
+}
+
+/* Harakatni kamaytirish rejimi — shisha before yorug'ligini o'chiramiz */
+@media (prefers-reduced-motion: reduce) {
+  .ku-glass::before, .ku-news-card::before, .ku-modal::before { display: none; }
+}
+
+/* Juda eski/qo'llab-quvvatlamaydigan brauzerlar uchun zaxira:
+   backdrop-filter bo'lmasa, kartalar baribir yarim shaffof o'rniga to'liq fon */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .ku-glass, .ku-news-card, .ku-ach-card, .ku-detail, .ku-modal {
+    background: var(--ku-glass-bg-strong);
+  }
+}
+
+/* ============================================================
+   DIZAYN YAXSHILANISHLARI (ku-enhance.js bilan birga)
+   ============================================================ */
+
+/* ---- Skip-link (a11y) ---- */
+.ku-skip {
+  position: fixed; left: 12px; top: -60px; z-index: 2000;
+  background: #003F3F; color: #fff; padding: 10px 16px; border-radius: 10px;
+  font-family: var(--ku-font-ui); font-weight: 600; text-decoration: none;
+  box-shadow: var(--ku-glass-shadow); transition: top .2s ease;
+}
+.ku-skip:focus { top: 12px; }
+
+/* ---- Fokus halqalari (klaviatura) ---- */
+:focus-visible {
+  outline: 2.5px solid #b99653; outline-offset: 2px; border-radius: 6px;
+}
+:root[data-theme="dark"] :focus-visible { outline-color: #F2C14E; }
+
+/* ---- Scroll-reveal ---- */
+.ku-reveal {
+  opacity: 0; transform: translateY(22px) scale(.99);
+  transition: opacity .7s cubic-bezier(.2,.8,.25,1), transform .7s cubic-bezier(.2,.8,.25,1);
+  transition-delay: var(--ku-reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.ku-reveal--in { opacity: 1; transform: none; }
+
+/* ---- Hero kirish animatsiyasi ---- */
+.ku-hero-in { animation: kuHeroIn .9s cubic-bezier(.2,.8,.25,1) both; }
+@keyframes kuHeroIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.ku-hero h1 .ku-word {
+  display: inline-block; opacity: 0;
+  animation: kuWordIn .6s cubic-bezier(.2,.8,.25,1) both;
+}
+@keyframes kuWordIn { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+
+/* ---- Rasmlar: skeleton + fade-in ---- */
+.ku-imgfx {
+  opacity: 0; transition: opacity .6s ease;
+  background-image: linear-gradient(100deg, rgba(0,60,60,.06) 30%, rgba(0,60,60,.14) 50%, rgba(0,60,60,.06) 70%);
+  background-size: 200% 100%; animation: kuShimmer 1.2s linear infinite;
+}
+.ku-imgfx--in { opacity: 1; animation: none; background-image: none; }
+@keyframes kuShimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+:root[data-theme="dark"] .ku-imgfx {
+  background-image: linear-gradient(100deg, rgba(255,255,255,.04) 30%, rgba(255,255,255,.10) 50%, rgba(255,255,255,.04) 70%);
+}
+
+/* ---- Yopishqoq "liquid glass" menyu ---- */
+.site-header-container { position: sticky; top: 0; z-index: 60; transition: box-shadow .3s ease, background .3s ease, backdrop-filter .3s ease; }
+body.ku-scrolled .site-header-container,
+body.ku-scrolled .site-header {
+  background: var(--ku-glass-bg-strong) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
+  backdrop-filter: saturate(180%) blur(18px);
+  box-shadow: 0 8px 30px rgba(0,40,40,.16);
+}
+body.ku-scrolled .site-header { padding-top: 6px; padding-bottom: 6px; }
+
+/* ---- Bo'lim ajratgichlari (nozik to'lqin) ---- */
+.ku-wave { line-height: 0; margin: -1px 0 -1px; pointer-events: none; }
+.ku-wave svg { display: block; width: 100%; height: 48px; }
+.ku-wave path { fill: rgba(0,63,63,0.05); }
+:root[data-theme="dark"] .ku-wave path { fill: rgba(255,255,255,0.04); }
+
+/* ---- Reduced-motion: barcha kirish animatsiyalarini o'chiramiz ---- */
+@media (prefers-reduced-motion: reduce) {
+  .ku-reveal { opacity: 1 !important; transform: none !important; }
+  .ku-hero-in, .ku-hero h1 .ku-word { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .ku-imgfx { opacity: 1 !important; animation: none !important; background-image: none !important; }
+}
+
+/* ============================================================
+   RESPONSIVLIK: mobil menyu (hamburger) + umumiy moslashuv
+   ============================================================ */
+.ku-burger { display: none !important; }
+
+/* Mustaqil mobil panel — JS tomonidan <body> ichiga qo'yiladi (toza stacking
+   konteksti). Desktopda yashirin. */
+.ku-mnav, .ku-mnav__overlay { display: none !important; }
+
+@media (max-width: 960px) {
+  .site-header { position: relative; }
+  /* Hamburger tugma (header ichida, sticky bilan suriladi) */
+  .ku-burger {
+    display: inline-flex !important; flex-direction: column; justify-content: center; gap: 5px;
+    position: absolute; top: 50%; right: 14px; transform: translateY(-50%);
+    width: 46px; height: 46px; padding: 11px; cursor: pointer; z-index: 1001;
+    border: 1px solid var(--ku-glass-brd) !important; border-radius: 13px;
+    background: var(--ku-glass-bg-strong) !important;
+    -webkit-backdrop-filter: saturate(160%) blur(12px); backdrop-filter: saturate(160%) blur(12px);
+    box-shadow: var(--ku-glass-shadow);
+  }
+  .ku-burger span { display: block; height: 2.5px; width: 100%; background: #003F3F !important; border-radius: 2px; transition: transform .28s, opacity .2s; }
+  :root[data-theme="dark"] .ku-burger span { background: #EAF2F6 !important; }
+  body.ku-nav-open .ku-burger span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+  body.ku-nav-open .ku-burger span:nth-child(2) { opacity: 0; }
+  body.ku-nav-open .ku-burger span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+  /* Off-canvas panel scroll kengaytirmasligi uchun ildizni clip qilamiz
+     (overflow-x:clip sticky'ni buzmaydi). */
+  html, body { overflow-x: clip; }
+
+  /* Asl menyu hududi mobilda yashirin — navigatsiya .ku-mnav orqali */
+  .site-header__content { display: none !important; }
+  .site-header .search { display: none; }
+
+  /* Fon qoraytirgich */
+  .ku-mnav__overlay {
+    display: block !important; position: fixed; inset: 0; background: rgba(8, 24, 28, .44);
+    opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; z-index: 100000;
+  }
+  body.ku-nav-open .ku-mnav__overlay { opacity: 1; visibility: visible; }
+
+  /* Panel — o'ngdan suriladi */
+  .ku-mnav {
+    display: flex !important; flex-direction: column;
+    position: fixed; top: 0; right: 0; bottom: 0; width: min(86vw, 360px);
+    background: #ffffff; color: #0b3a3a; z-index: 100001;
+    box-shadow: -14px 0 48px rgba(0, 40, 40, .26);
+    transform: translateX(100%); transition: transform .34s cubic-bezier(.2, .8, .25, 1);
+  }
+  :root[data-theme="dark"] .ku-mnav { background: #0E1820; color: #EAF2F6; }
+  body.ku-nav-open .ku-mnav { transform: translateX(0); }
+  .ku-mnav__inner { padding: 74px 20px 28px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .ku-mnav ul { list-style: none; margin: 0 0 10px; padding: 0; display: flex; flex-direction: column; max-width: none; }
+  .ku-mnav .sub-menu { display: block; position: static; padding: 2px 0 8px 14px; box-shadow: none; background: transparent; min-width: 0; }
+  .ku-mnav li { width: 100%; margin: 0; }
+  .ku-mnav a {
+    display: block; padding: 12px 4px; font-family: var(--ku-font-ui);
+    font-size: 1.05rem; color: inherit !important; text-decoration: none;
+    border-bottom: 1px solid rgba(0, 60, 60, .1);
+  }
+  :root[data-theme="dark"] .ku-mnav a { border-bottom-color: rgba(255, 255, 255, .1); }
+  .ku-mnav .sub-menu a { font-size: .98rem; opacity: .85; }
+}
+
+/* Juda tor ekran — matn/padding'ni ixchamlash */
+@media (max-width: 420px) {
+  .ku-wrap, .ku-detail-view, .ku-news-grid { padding-left: 14px; padding-right: 14px; }
+  .ku-hero h1 { font-size: clamp(1.6rem, 8vw, 2.2rem); }
+}
