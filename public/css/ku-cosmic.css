@@ -367,3 +367,90 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .content_sections-content__left,
   .introduction-content__left { padding:20px; border-radius:var(--ku-radius); }
 }
+
+/* =====================================================================
+   16. 2026 MOTION & POLISH — zamonaviy harakat qatlami
+   ===================================================================== */
+
+/* Aurora siljishi — fon jonli nafas oladi (reduced-motion'da to'xtaydi) */
+body::before {
+  background-size:160% 160%;
+  animation:ku-aurora-drift 26s ease-in-out infinite alternate;
+}
+@keyframes ku-aurora-drift {
+  0%   { background-position:0% 0%, 100% 0%, 80% 100%, 0 0; }
+  50%  { background-position:30% 20%, 70% 10%, 60% 80%, 0 0; }
+  100% { background-position:10% 10%, 90% 20%, 90% 90%, 0 0; }
+}
+
+/* Yengil "grain" tekstura — 2026 estetikasi (juda nozik) */
+html::before {
+  content:"";
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  opacity:.035; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --- Scroll progress bar (JS to'ldiradi) --- */
+#ku-progress {
+  position:fixed; top:0; left:0; height:3px; width:0;
+  z-index:9999; border-radius:0 3px 3px 0;
+  background:linear-gradient(90deg,var(--ku-ice),var(--ku-aurora));
+  box-shadow:0 0 12px rgba(94,231,255,.7);
+  transition:width .1s linear;
+}
+
+/* --- Scroll-reveal (faqat JS yoqilgan bo'lsa yashiradi) --- */
+html.ku-js [data-ku-reveal] {
+  opacity:0; transform:translateY(28px) scale(.985);
+  transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1);
+  will-change:opacity, transform;
+}
+html.ku-js [data-ku-reveal].ku-in { opacity:1; transform:none; }
+
+/* --- Bento / karta hover: 3D-tilt + kursorga ergashuvchi yorug'lik --- */
+.ku-tilt {
+  transform-style:preserve-3d;
+  transition:transform .25s cubic-bezier(.22,.61,.36,1), box-shadow .25s ease;
+  position:relative;
+}
+.ku-tilt::after {
+  content:""; position:absolute; inset:0; border-radius:inherit;
+  background:radial-gradient(300px circle at var(--mx,50%) var(--my,0%), rgba(94,231,255,.16), transparent 60%);
+  opacity:0; transition:opacity .25s ease; pointer-events:none;
+}
+.ku-tilt:hover { box-shadow:0 26px 60px -22px rgba(94,231,255,.4), var(--ku-shadow); }
+.ku-tilt:hover::after { opacity:1; }
+
+/* Kartalar — bir xil ko'tarilish */
+.content_sections-content__left,
+.introduction-content__left,
+.who_we_are-content__icons-container,
+.gform_wrapper {
+  transition:transform .3s cubic-bezier(.22,.61,.36,1), box-shadow .3s ease, border-color .3s ease;
+}
+.content_sections-content__left:hover,
+.introduction-content__left:hover,
+.who_we_are-content__icons-container:hover {
+  transform:translateY(-4px);
+  border-color:var(--ku-stroke-strong);
+}
+
+/* Rasm hover — nafis zoom (overflow yashirilgan konteynerda) */
+.content_sections-content__image, .who_we_are-content picture, .image-overlay { overflow:hidden; border-radius:var(--ku-radius); }
+.content_sections-content__image img, .image-overlay img { transition:transform .5s cubic-bezier(.22,.61,.36,1); }
+.content_sections-content__image:hover img, .image-overlay:hover img { transform:scale(1.05); }
+
+/* Bo'lim ajratgichi — yengil muz chizig'i */
+.content_sections-container + .content_sections-container::before,
+.who_we_are-container::before {
+  content:""; position:absolute; top:0; left:12%; right:12%; height:1px;
+  background:linear-gradient(90deg,transparent,var(--ku-stroke-strong),transparent);
+}
+
+/* Reduced-motion — barcha 2026 harakatlarni to'xtatadi */
+@media (prefers-reduced-motion:reduce) {
+  body::before { animation:none; }
+  html.ku-js [data-ku-reveal] { opacity:1; transform:none; transition:none; }
+  .ku-tilt, .content_sections-content__image img, .image-overlay img { transition:none; }
+}
